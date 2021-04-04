@@ -11,7 +11,7 @@
 * [Technologies](#rocket-technologies)
 * [How to Run](#computer-how-to-run)
 * [Issues](#bug-issues)
-* [Contributing](#sparkles-issues)
+* [Contributing](#sparkles-contributing)
 * [License](#page_facing_up-license)
 
 # :camera: Screenshots
