@@ -6,7 +6,8 @@ import outcomeImg from '../../assets/outcome.svg'
 import closeImg from '../../assets/close.svg';
 
 import { Container, TransactionTypeContainer, RadioBox } from './styles';
-import { useState } from 'react';
+import { FormEvent, useState } from 'react';
+import { api } from '../../services/api';
 
 interface newTransationModalProps {
   isOpen: boolean;
@@ -14,7 +15,26 @@ interface newTransationModalProps {
 }
 
 export function NewTransactionModal({isOpen, onRequestClose}: newTransationModalProps) {
+  //inicializar o estado sempre com o formato da informação que vamos armazenar
+  const [title, setTitle] = useState(''); //Forms de Texto
+  const [value, setValue] = useState(0);   //Forms Numéricos
+  const [category, setCategory] = useState(''); 
   const [type, setType] = useState('deposit');
+
+  function handleCreateNewTransaction (event: FormEvent) {
+    event.preventDefault ();
+
+    const data = {
+      title,
+      value,
+      category,
+      type,
+    };
+
+    api.post('/transactions', data);
+
+
+  }
 
     
   return (
@@ -32,16 +52,20 @@ export function NewTransactionModal({isOpen, onRequestClose}: newTransationModal
           <img src={closeImg} alt="Fechar Modal"/>
       </button>
 
-      <Container>
+      <Container onSubmit={handleCreateNewTransaction}>
         <h2>Cadastrar transação</h2>
 
         <input
           placeholder="Titulo"
+          value={title}
+          onChange={event => setTitle(event.target.value)}
         />
 
         <input
           type="number"
           placeholder="Valor"
+          value={value}
+          onChange={event => setValue(Number(event.target.value))}
         />
 
         <TransactionTypeContainer>
@@ -68,6 +92,8 @@ export function NewTransactionModal({isOpen, onRequestClose}: newTransationModal
 
         <input
           placeholder="Catelogoria"
+          value={category}
+          onChange={event => setCategory(event.target.value)}
         />
 
         <button type="submit">
