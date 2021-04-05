@@ -15,8 +15,8 @@
 
 # :camera: Screenshots
 <div align="center">
-   <img src="./.github/dashboard.png" width="400px">
-   <img src="./.github/new-transaction.png" width="400px">
+   <img src="../.github/dashboard.png" width="400px">
+   <img src="../.github/new-transaction.png" width="400px">
 </div>
 
 # :rocket: Technologies
